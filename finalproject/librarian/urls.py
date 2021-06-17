@@ -5,5 +5,7 @@ from .views import *
 app_name = 'librarian'
 
 urlpatterns = [
-    # path('', loginview, name='login-view'),
+    path('home/', homepageview, name='home-page-view'),
+
+    path('student-profile/', studentprofileview, name='student-profile-view'),
 ]
