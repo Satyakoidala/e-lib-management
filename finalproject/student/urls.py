@@ -5,5 +5,5 @@ from .views import *
 app_name = 'student'
 
 urlpatterns = [
-    # path('', loginview, name='login-view'),
+    path('home/', homepageview, name='home-page-view'),
 ]
