@@ -1,1 +1,135 @@
-<h1>this is librarian home page</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head-part %}
+<link rel="stylesheet" href="{% static '' %}">
+{% endblock %}
+
+{% block header-other-half %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href='{% url "users:view-profile-view" %}'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                    class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                </svg>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#">logout</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block body-part %}
+
+<div class="container bg-light">
+    <div class="row">
+        <div class="col">
+            <form class="form-inline" action="" method="GET">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search Profile" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <img src="https://img.icons8.com/material-outlined/20/000000/search.png" />
+                </button>
+            </form>
+        </div>
+        <div class="col">
+            <form class="form-inline" action="" method="GET">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search Book" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <img src="https://img.icons8.com/material-outlined/20/000000/search.png" />
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        {% block student-profile %}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card card-outline-secondary">
+                            <div class="card-header ">
+                                <h3>Book Issue</h3>
+                            </div>
+                            <div class="card-body">
+                                <form class="form ">
+                                    <div class="form-group">
+                                        <input type="text" id="stdid" placeholder="Enter Roll No" required="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" id="bookid" placeholder="Enter Book ID" required="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-lg float-right">Issue</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card card-outline-secondary">
+                            <div class="card-header ">
+                                <h3>Book Retrieval</h3>
+                            </div>
+                            <div class="card-body">
+                                <form class="form ">
+                                    <div class="form-group">
+                                        <input type="text" id="stdid" placeholder="Enter Roll No" required="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" id="bookid" placeholder="Enter Book ID" required="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-lg float-right">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="container">
+                <h4>dashboard</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <h3>Transactions</h3>
+    <table class="table table-secondary">
+        <thead>
+            <tr>
+                <th scope="col">Time Stamp</th>
+                <th scope="col">Student Roll no</th>
+                <th scope="col">Book ID</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Copies Available</th>
+                <th scope="col">Type</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+{% endblock %}

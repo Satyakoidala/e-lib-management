@@ -1,1 +1,99 @@
-<h1>this is view profile page</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head-part %}
+<link rel="stylesheet" href="{% static '' %}">
+{% endblock %}
+
+{% block header-other-half %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href='{% url "users:view-profile-view" %}'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                    class="bi bi-person-circle" viewBox="0 0 16 16">
+                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                    <path fill-rule="evenodd"
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                </svg>
+            </a>
+        </div>
+        <div class="col">
+            <a href="#">logout</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block body-part %}
+{% if  myvar %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="profile-img">
+                <img src="" alt="profile-image" />
+            </div>
+        </div>
+        <div class="col">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                    </tr>
+                    <tr>
+                        <td>Roll Number</td>
+                    </tr>
+                    <tr>
+                        <td>Academic Year</td>
+                    </tr>
+                    <tr>
+                        <td>Branch</td>
+                    </tr>
+                    <tr>
+                        <td>Section</td>
+                    </tr>
+                    <tr>
+                        <td>Email ID</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="profile-img">
+                <img src="" alt="profile-image" />
+            </div>
+        </div>
+        <div class="col">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                    </tr>
+                    <tr>
+                        <td>User ID</td>
+                    </tr>
+                    <tr>
+                        <td>Email ID</td>
+                    </tr>
+                    <tr>
+                        <td>Number Of Books Issued</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endif %}
+{% endblock %}
