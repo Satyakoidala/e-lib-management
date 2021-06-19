@@ -2,11 +2,31 @@
 {% load static %}
 
 {% block head-part %}
-    <link rel="stylesheet" href="{% static 'users/css/demo.css' %}">
+<link rel="stylesheet" href="{% static 'users/css/demo.css' %}">
 {% endblock %}
 
 {% block body-part %}
-     
-    <h1> This is a login Page</h1> 
+<h2>Login Form</h2>
+<form action="" method="POST">
+
+  <div class="container">
+    <label><b>UserID</b></label>
+    <input type="text" id="userid" placeholder="UserID" required>
+  </div>
+
+  <div class="container">
+    <label><b>Password</b></label>
+    <input type="password" id="psw" placeholder="Password" required>
+  </div>
+
+  <div>
+    <button type="submit">Login</button>
+  </div>
+
+  <div class="container">
+    <span> <a href="#"> Forgot password?</a></span>
+  </div>
+
+</form>
 
 {% endblock %}

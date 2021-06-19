@@ -1,1 +1,20 @@
-<h1>This is index page</h1>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head-part %}
+<link rel="stylesheet" href="{% static '' %}">
+{% endblock %}
+
+{% block header-other-half %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="#">login</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block body-part %}
+
+{% endblock %}
