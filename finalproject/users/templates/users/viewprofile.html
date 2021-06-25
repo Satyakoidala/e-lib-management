@@ -9,17 +9,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href='{% url "users:view-profile-view" %}'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                    class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path fill-rule="evenodd"
-                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                </svg>
+            <a href='#'>
+                <span>{{ username }}</span>
             </a>
         </div>
         <div class="col">
-            <a href="#">logout</a>
+            <a href="{% url 'users:logout-view' %}">logout</a>
         </div>
     </div>
 </div>
@@ -28,12 +23,12 @@
 
 
 {% block body-part %}
-{% if  myvar %}
+{% if not isLibrarian %}
 <div class="container">
     <div class="row">
         <div class="col">
             <div class="profile-img">
-                <img src="" alt="profile-image" />
+                <img src="{% static profileImage %}" alt="profile-image" style="width:25%; height:25%;" />
             </div>
         </div>
         <div class="col">
@@ -41,34 +36,48 @@
                 <tbody>
                     <tr>
                         <td>Name</td>
+                        <td>{{ student.name }}</td>
                     </tr>
                     <tr>
                         <td>Roll Number</td>
-                    </tr>
-                    <tr>
-                        <td>Academic Year</td>
-                    </tr>
-                    <tr>
-                        <td>Branch</td>
-                    </tr>
-                    <tr>
-                        <td>Section</td>
+                        <td>{{ student.studid }}</td>
                     </tr>
                     <tr>
                         <td>Email ID</td>
+                        <td>{{ student.email }}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td>{{ student.phone }}</td>
+                    </tr>
+                    <tr>
+                        <td>Academic Year</td>
+                        <td>{{ student.academicyear }}</td>
+                    </tr>
+                    <tr>
+                        <td>Section</td>
+                        <td>{{ student.section }}</td>
+                    </tr>
+                    <tr>
+                        <td>Amount Paid till now</td>
+                        <td>{{ student.amountpaid }}</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="col">
+            <a href="{% url 'student:home-page-view' %}"><button class='btn btn-primary'>Return to Home Page</button></a>
         </div>
     </div>
 </div>
 
 {% else %}
+
 <div class="container">
     <div class="row">
         <div class="col">
             <div class="profile-img">
-                <img src="" alt="profile-image" />
+                <img src="{% static profileImage %}" alt="profile-image" />
             </div>
         </div>
         <div class="col">
@@ -76,18 +85,34 @@
                 <tbody>
                     <tr>
                         <td>Name</td>
+                        <td>{{ librarian.name }}</td>
                     </tr>
                     <tr>
                         <td>User ID</td>
+                        <td>{{ librarian.libid }}</td>
                     </tr>
                     <tr>
                         <td>Email ID</td>
+                        <td>{{ librarian.email }}</td>
                     </tr>
                     <tr>
                         <td>Number Of Books Issued</td>
+                        <td>{{ librarian.issuedcount }}</td>
+                    </tr>
+                    <tr>
+                        <td>Number Of Books Retrieved</td>
+                        <td>{{ librarian.retrievedcount }}</td>
+                    </tr>
+                    <tr>
+                        <td>Total number of Actions</td>
+                        <td>{{ librarian.totalactions }}</td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="col">
+            <a href="{% url 'librarian:home-page-view' %}"><button class='btn btn-primary'>Return to Home Page</button></a>
+            <a href="{% url 'librarian:send-notifications-view' %}"><button class='btn btn-danger'>Send Mail Notifications</button></a>
         </div>
     </div>
 </div>

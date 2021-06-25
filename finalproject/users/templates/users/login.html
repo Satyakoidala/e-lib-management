@@ -6,27 +6,26 @@
 {% endblock %}
 
 {% block body-part %}
+    {% if logout_msg %}
+    {{ logout_msg }}
+    {% endif %}
 <h2>Login Form</h2>
-<form action="" method="POST">
+<form action="{% url 'users:user-validation-view' %}" method="POST">
+  {% csrf_token %}
 
   <div class="container">
-    <label><b>UserID</b></label>
-    <input type="text" id="userid" placeholder="UserID" required>
-  </div>
-
-  <div class="container">
-    <label><b>Password</b></label>
-    <input type="password" id="psw" placeholder="Password" required>
-  </div>
-
-  <div>
-    <button type="submit">Login</button>
-  </div>
-
-  <div class="container">
-    <span> <a href="#"> Forgot password?</a></span>
+    {{ form.userid }}
+    {{ form.psw }}
+    {% if errors %}
+      {{errors}}
+    {% endif %}
+    <button class="btn btn-lg btn-primary btn-sm" type="submit">Login</button>
   </div>
 
 </form>
+
+<div class="container">
+  <span> <a href="{% url 'users:forgot-password-view' %}"> Forgot password?</a></span>
+</div>
 
 {% endblock %}

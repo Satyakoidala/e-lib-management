@@ -10,16 +10,11 @@
     <div class="row">
         <div class="col">
             <a href='{% url "users:view-profile-view" %}'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                    class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path fill-rule="evenodd"
-                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                </svg>
+                <span>{{ username }}</span>
             </a>
         </div>
         <div class="col">
-            <a href="#">logout</a>
+            <a href="{% url 'users:logout-view' %}">logout</a>
         </div>
     </div>
 </div>
@@ -31,8 +26,8 @@
 <div class="container bg-light">
     <div class="row">
         <div class="col">
-            <form class="form-inline" action="" method="GET">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search Book" aria-label="Search">
+            <form class="form-inline" action="{% url 'users:search-result-view' %}" method="GET">
+                {{ searchform.searchbox }}
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
                     <img src="https://img.icons8.com/material-outlined/20/000000/search.png" />
                 </button>
@@ -46,7 +41,7 @@
     <table class="table table-secondary">
         <thead>
             <tr>
-                <th scope="col">S.no</th>
+                <!-- <th scope="col">S.no</th> -->
                 <th scope="col">Book ID</th>
                 <th scope="col">Book Issue Date</th>
                 <th scope="col">Due Date</th>
@@ -55,33 +50,23 @@
             </tr>
         </thead>
         <tbody>
+            {% for row in activebooks %}
             <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <!-- <th scope="col">{{ row.id }}</th> -->
+                <td scope="col">{{ row.bookid }}</td>
+                <td scope="col">{{ row.timestamp }}</td>
+                <td scope="col">{{ row.duedate }}</td>
+                <td scope="col">{{ row.amountdue }}</td>
+                <td scope="col"><a href="pay/{{ row.bookid }}/"><button>Paynow</button></a></td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
 </div>
+
+{% if paystatus %}
+    <p>{{ paystatus }}</p>
+{% endif %}
 
 <div>
     <h3>Transactions</h3>
@@ -96,6 +81,18 @@
                 <th scope="col">Amount</th>
             </tr>
         </thead>
+        <tbody>
+            {% for row in actionhistory %}
+            <tr>
+                <th scope="col">{{ row.timestamp }}</th>
+                <td scope="col">{{ row.bookid }}</td>
+                <td scope="col">{{ row.bookname }}</td>
+                <td scope="col">{{ row.copies }}</td>
+                <td scope="col">{{ row.ttype }}</td>
+                <td scope="col">{{ row.amount }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </div>
 

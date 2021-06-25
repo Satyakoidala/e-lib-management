@@ -13,4 +13,6 @@ admin.site.register(History),
 
 admin.site.register(Payment_View),
 
+admin.site.register(Payment_History),
+
 admin.site.register(Books),

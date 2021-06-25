@@ -1,48 +1,72 @@
 {% extends 'librarian/homepage.html' %}
+{% load static %}
 
 {% block student-profile %}
-<div class="container border border-dark">
-    <div class="row border">
-        <div class="col">
-            <img src="" alt="profile-image" />
+    {% if searchedquery %}
+    <div class="container border border-dark">
+        <div class="row border">
+            <div class="col">
+                <img src="{% static studimage %}" alt="profile-image" style="width:50%; height:100%;"/>
+            </div>
+            <div class="col">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Name:
+                            </td>
+                            <td>
+                                {{ student.name }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Roll Number:
+                            </td>
+                            <td>
+                                {{ student.studid }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col">
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            Name:
-                        </td>
-                        <td>
-                            Kari Vijaya
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Roll Number:
-                        </td>
-                        <td>
-                            17131A0591
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="row">
+            <div class="col">
+                <table class="table table-secondary">
+                    <thead>
+                        <tr>
+                            <!-- <td>S.No</td> -->
+                            <td>Book ID</td>
+                            <td>Issue Date</td>
+                            <td>Due Date</td>
+                            <td>Amount Due</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if activebooks %}
+                            {% for row in activebooks %}
+                            <tr>
+                                <!-- <td>{{ row.id }}</td> -->
+                                <td>{{ row.bookid }}</td>
+                                <td>{{ row.timestamp }}</td>
+                                <td>{{ row.duedate }}</td>
+                                <td>{{ row.amountdue }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td>----</td>
+                                <td>----</td>
+                                <td>----</td>
+                                <td>----</td>
+                                <td>----</td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <table class="table table-secondary">
-                <thead>
-                    <tr>
-                        <td>S.No</td>
-                        <td>Book ID</td>
-                        <td>Issue Date</td>
-                        <td>Due Date</td>
-                        <td>Amount</td>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
-</div>
+    {% endif %}
 {% endblock %}
