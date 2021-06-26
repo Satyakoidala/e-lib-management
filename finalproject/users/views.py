@@ -1,3 +1,4 @@
+from .sms import *
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 
@@ -27,7 +28,7 @@ def loginview(request, *args, **kwargs):
     if 'issue_book_error' in request.session:
         del request.session['issue_book_error']
     if 'submit_book_error' in request.session:
-        del request.session['submit_book_error'] 
+        del request.session['submit_book_error']
     if 'errors' in request.session:
         del request.session['errors']
     if 'otp_sent' in request.session:
@@ -40,7 +41,7 @@ def loginview(request, *args, **kwargs):
         del request.session['resend_otp']
     return render(request, 'users/login.html', {
         'form': form,
-        'errors':errors,
+        'errors': errors,
         'logout_msg': logoutmsg,
     })
 
@@ -66,12 +67,36 @@ def validationview(request, *args, **kwargs):
                 request.session['auth_errors'] = 'Invalid Username/Password'
     return HttpResponseRedirect(reverse('users:login-view'))
 
-from .sms import *
+def validationview(request, *args, **kwargs):
+    if request.method == 'POST':
+        form = loginform(request.POST)
+        if form.is_valid():
+            try:
+                user = Library_Users.objects.get(
+                    userid=form.cleaned_data['userid'])
+            except:
+                request.session['curr_user_id'] = 'anonymous'
+                request.session['auth_errors'] = 'Invalid Username/Password'
+                return HttpResponseRedirect(reverse('users:login-view'))
+            if (user.password == form.cleaned_data['psw']):
+                request.session['curr_user_id'] = form.cleaned_data['userid']
+                # print(request.session['curr_user_id'])
+                if (user.isLibrarian):
+                    return HttpResponseRedirect(reverse('librarian:home-page-view'))
+                else:
+                    return HttpResponseRedirect(reverse('student:home-page-view'))
+            else:
+                request.session['curr_user_id'] = 'anonymous'
+                request.session['auth_errors'] = 'Invalid Username/Password'
+    return HttpResponseRedirect(reverse('users:login-view'))
+
+
 def sendotpview(request, *args, **kwargs):
-    # valid incoming user from the request 
+    # valid incoming user from the request
     # print(request.session['curr_user_id'])
     try:
-        user = Library_Users.objects.get(userid=request.session['curr_user_id'])
+        user = Library_Users.objects.get(
+            userid=request.session['curr_user_id'])
         if user.isLibrarian:
             active_user = Librarian.objects.get(libid=user)
         else:
@@ -130,7 +155,7 @@ def forgotpasswordview(request, *args, **kwargs):
             else:
                 request.session['curr_user_id'] = 'xxx'
             return HttpResponseRedirect(reverse('users:send-otp-view'))
-    else:   
+    else:
         try:
             if request.session['otp_sent']:
                 otpform = sendotpform()
@@ -143,19 +168,19 @@ def forgotpasswordview(request, *args, **kwargs):
                 except:
                     request.session['resend_otp'] = False
                     resend_otp = False
-                
-                return  render(request, 'users/forgotpassword.html', {
+
+                return render(request, 'users/forgotpassword.html', {
                     'sent_otp': request.session['otp_sent'],
                     'otpform': otpform,
                     'verify_otpform': verify_otpform,
                     'errors': errors,
                     'resend_otp': resend_otp,
-                })    
+                })
             else:
                 otpform = sendotpform()
                 errors = request.session['errors']
                 del request.session['errors']
-        except: 
+        except:
             request.session['otp_sent'] = False
             otpform = sendotpform()
             errors = ''
@@ -186,7 +211,8 @@ def updatepasswordview(request, *args, **kwargs):
         pswform = setpasswordform(request.POST)
         if pswform.is_valid():
             if pswform.cleaned_data['psw1'] == pswform.cleaned_data['psw2']:
-                user = Library_Users.objects.get(userid=request.session['curr_user_id'])
+                user = Library_Users.objects.get(
+                    userid=request.session['curr_user_id'])
                 user.password = pswform.cleaned_data['psw1']
                 user.save()
                 if (user.isLibrarian):
@@ -226,27 +252,32 @@ def viewprofileview(request, *args, **kwargs):
 
 def searchresultview(request, *args, **kwargs):
     username = request.session['curr_user_id']
+    user = Library_Users.objects.get(userid=username)
     if request.method == 'GET':
         searchform = searchboxform(request.GET)
         if searchform.is_valid():
             keyword = searchform.cleaned_data['searchbox']
             keywords = keyword.split()
-            if len(keywords)<2:
-                if len(keywords)==1:
-                    booklist = Books.objects.filter(bookname__icontains=keywords[0])
+            if len(keywords) < 2:
+                if len(keywords) == 1:
+                    booklist = Books.objects.filter(
+                        bookname__icontains=keywords[0])
                 else:
                     booklist = {}
             else:
                 booklist = list()
                 for word in keywords:
-                    booklist.append(Books.objects.filter(bookname__icontains=word))
+                    booklist.append(Books.objects.filter(
+                        bookname__icontains=word))
                 booklist = list(chain(*booklist))
             return render(request, 'users/searchresult.html', {
                 'username': username,
                 'searchform': searchboxform(),
                 'booklist': booklist,
+                'user': user,
             })
     return render(request, 'users/searchresult.html', {
         'username': username,
         'searchform': searchboxform(),
+        'user': user,
     })

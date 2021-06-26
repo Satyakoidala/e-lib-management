@@ -40,9 +40,9 @@ def homepageview(request, *args, **kwargs):
         del request.session['mail_notification']
     else:
         mail_notification = ''
-    
+
     return render(request, 'librarian/homepage.html', {
-        'username' : username,
+        'username': username,
         'searchform': searchform,
         'studentprofileform': studentprofileform,
         'bookactionform': bookform,
@@ -76,7 +76,7 @@ def studentprofileview(request, *args, **kwargs):
         submit_error = ''
 
     if request.method == 'GET':
-        searchedQuery = True 
+        searchedQuery = True
         if request.GET == {}:
             searchedQuery = False
             return HttpResponseRedirect(reverse('librarian:home-page-view'))
@@ -90,17 +90,18 @@ def studentprofileview(request, *args, **kwargs):
                 except:
                     searchedQuery = False
                     return HttpResponseRedirect(reverse('librarian:home-page-view'))
-                
+
                 activebooks = Issued_Books.objects.filter(studid=user)
                 for activebook in activebooks:
-                    activebook.amountdue = fine(activebook.duedate, datetime.now().date())
+                    activebook.amountdue = fine(
+                        activebook.duedate, datetime.now().date())
                     activebook.save()
-                
+
                 studimage = f'users/images/{studentprofile.studid}.jpg'
-                
+
                 # student id is verified and profile is retrieved!!
                 return render(request, 'librarian/studentprofile.html', {
-                    'username' : username,
+                    'username': username,
                     'searchform': searchform,
                     'studentprofileform': studentprofileform,
                     'searchedquery': searchedQuery,
@@ -118,7 +119,7 @@ def studentprofileview(request, *args, **kwargs):
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
 
     return render(request, 'librarian/studentprofile.html', {
-        'username' : username,
+        'username': username,
         'searchform': searchform,
         'studentprofileform': studentprofileform,
         'searchedquery': False,
@@ -130,10 +131,12 @@ def studentprofileview(request, *args, **kwargs):
         'submit_error': submit_error,
     })
 
+
 def issuebookview(request, *args, **kwargs):
     request.session['issue_book_error'] = ''
     if request.method == 'POST':
-        worker = Library_Users.objects.get(userid=request.session['curr_user_id'])
+        worker = Library_Users.objects.get(
+            userid=request.session['curr_user_id'])
         active_librarian = Librarian.objects.get(libid=worker)
         bookform = bookactionform(request.POST)
         if bookform.is_valid():
@@ -144,17 +147,16 @@ def issuebookview(request, *args, **kwargs):
             except:
                 request.session['issue_book_error'] = 'Invalid Book ID'
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
-            
             try:
                 student = Library_Users.objects.get(userid=studid)
             except:
                 request.session['issue_book_error'] = 'Invalid Student ID'
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
-            #post validity of roll no of student
+            # post validity of roll no of student
 
             activebooks = Issued_Books.objects.filter(studid=student)
 
-            if len(activebooks)==3:
+            if len(activebooks) == 3:
                 request.session['issue_book_error'] = 'Maximum Books Limit Reached'
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
 
@@ -163,18 +165,20 @@ def issuebookview(request, *args, **kwargs):
             if bookhad:
                 request.session['issue_book_error'] = 'Book is already taken by this User'
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
-            
+
             if book.copies <= 0:
                 request.session['issue_book_error'] = 'No copies availble for this Book ID'
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
-            
+
             book.copies -= 1
             book.save()
             timestamp = datetime.now()
             due = duedate(timestamp.date())
-            record = Issued_Books(timestamp=timestamp, studid=student, libid=worker, bookid=book, bookname=book.bookname, duedate=due)
+            record = Issued_Books(timestamp=timestamp, studid=student,
+                                  libid=worker, bookid=book, bookname=book.bookname, duedate=due)
             record.save()
-            record = History(timestamp=timestamp, studid=student, libid=worker, bookid=book, bookname=book.bookname, ttype='Issue', copies=book.copies, amount=0)
+            record = History(timestamp=timestamp, studid=student, libid=worker, bookid=book,
+                             bookname=book.bookname, ttype='Issue', copies=book.copies, amount=0)
             record.save()
             dashboard = Dashboard.objects.get(id=1)
             dashboard.booksinside -= 1
@@ -189,10 +193,12 @@ def issuebookview(request, *args, **kwargs):
         request.session['issue_book_error'] = 'Invalid action'
     return HttpResponseRedirect(reverse('librarian:home-page-view'))
 
+
 def submitbookview(request, *args, **kwargs):
     request.session['submit_book_error'] = ''
     if request.method == 'POST':
-        worker = Library_Users.objects.get(userid=request.session['curr_user_id'])
+        worker = Library_Users.objects.get(
+            userid=request.session['curr_user_id'])
         active_librarian = Librarian.objects.get(libid=worker)
         bookform = bookactionform(request.POST)
         if bookform.is_valid():
@@ -203,53 +209,55 @@ def submitbookview(request, *args, **kwargs):
             except:
                 request.session['submit_book_error'] = 'Invalid Book ID'
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
-            
             try:
                 student = Library_Users.objects.get(userid=studid)
             except:
                 request.session['submit_book_error'] = 'Invalid Student ID'
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
-            #post validity of roll no of student
+            # post validity of roll no of student
 
             # activebooks = Issued_Books.objects.filter(studid=student)
 
             bookhad = Issued_Books.objects.filter(studid=student, bookid=book)
 
             if bookhad:
-                booktaken = Issued_Books.objects.get(studid=student, bookid=book)
+                booktaken = Issued_Books.objects.get(
+                    studid=student, bookid=book)
             else:
                 request.session['submit_book_error'] = 'Book is not taken by this User'
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
 
             finepayable = fine(booktaken.duedate, datetime.now().date())
             if booktaken.amountdue == finepayable:
-                if finepayable>0:
+                if finepayable > 0:
                     request.session['submit_book_error'] = f'Book has {finepayable} Rs. of fine to pay!'
                     return HttpResponseRedirect(reverse('librarian:home-page-view'))
                 else:
                     pass
             else:
-                if finepayable>0:
+                if finepayable > 0:
                     booktaken.amountdue = finepayable
                     booktaken.save()
                     request.session['submit_book_error'] = f'Book has {finepayable} Rs. of fine to pay!'
                     return HttpResponseRedirect(reverse('librarian:home-page-view'))
 
-            
-            paymentlist = Payment_View.objects.filter(studid=student, bookid=book)
+            paymentlist = Payment_View.objects.filter(
+                studid=student, bookid=book)
 
             totalpaidamount = 0
             for payment in paymentlist:
                 totalpaidamount += payment.amount
 
             paymentlist.delete()
-            
+
             book.copies += 1
             book.save()
             timestamp = datetime.now()
-            record = Submitted_Books(timestamp=timestamp, studid=student, libid=worker, bookid=book, bookname=book.bookname, amountpaid=totalpaidamount)
+            record = Submitted_Books(timestamp=timestamp, studid=student, libid=worker,
+                                     bookid=book, bookname=book.bookname, amountpaid=totalpaidamount)
             record.save()
-            record = History(timestamp=timestamp, studid=student, libid=worker, bookid=book, bookname=book.bookname, ttype='Submit', copies=book.copies, amount=totalpaidamount)
+            record = History(timestamp=timestamp, studid=student, libid=worker, bookid=book,
+                             bookname=book.bookname, ttype='Submit', copies=book.copies, amount=totalpaidamount)
             record.save()
             booktaken.delete()
             dashboard = Dashboard.objects.get(id=1)
@@ -270,7 +278,7 @@ def sendnotificationsview(request, *args, **kwargs):
     date = datetime.now().date()
     for book in activebooks:
         if (book.duedate >= date):
-            if diff(date, book.duedate)<3:
+            if diff(date, book.duedate) < 3:
                 learner = Library_Users.objects.get(userid=book.studid)
                 active_learner = Students.objects.get(studid=learner)
                 mailTemplateOne(active_learner, book)
@@ -280,9 +288,5 @@ def sendnotificationsview(request, *args, **kwargs):
             learner = Library_Users.objects.get(userid=book.studid)
             active_learner = Students.objects.get(studid=learner)
             mailTemplateTwo(active_learner, book)
-    request.session['mail_notification']='Notifications sent successfully.'
+    request.session['mail_notification'] = 'Notifications sent successfully.'
     return HttpResponseRedirect(reverse('librarian:home-page-view'))
-
-
-                
-
