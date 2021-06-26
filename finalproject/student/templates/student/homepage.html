@@ -2,101 +2,106 @@
 {% load static %}
 
 {% block head-part %}
-<link rel="stylesheet" href="{% static '' %}">
+<link rel="stylesheet" href="{% static 'student/css/homepage.css' %}">
+{% endblock %}
+
+{% block bg-part %}
+style="background:transparent url('{% static 'users/images/hologram.png' %}') no-repeat fixed center center / 40% 70%"
 {% endblock %}
 
 {% block header-other-half %}
 <div class="container">
-    <div class="row">
-        <div class="col">
+    <div class="row m-4 p-2 ">
+        <div class="col text-align ml-5">
             <a href='{% url "users:view-profile-view" %}'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                    class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path fill-rule="evenodd"
-                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                </svg>
+                <text class="rollno-color ">{{ username }}</text>
             </a>
         </div>
-        <div class="col">
-            <a href="#">logout</a>
+
+        <div class="col lout-text-align ">
+            <a href="{% url 'users:logout-view' %}">
+                <text class="logoutcolor">Logout</text>
+            </a>
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block body-part %}
 
-<div class="container bg-light">
-    <div class="row">
-        <div class="col">
-            <form class="form-inline" action="" method="GET">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search Book" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                    <img src="https://img.icons8.com/material-outlined/20/000000/search.png" />
-                </button>
+<div class="container-fluid">
+    <div class="row m-3 px-3 pt-2">
+        <div class="col pl-5">
+            <form action="{% url 'users:search-result-view' %}" method="GET">
+                {{ searchform.searchbox }}
+                <!-- <input type="search" class="form-bg" id="book" placeholder="     Search Book"> -->
+                <input type="submit" class="search-button" value="">
             </form>
         </div>
     </div>
-</div>
+    <div class="row pt-1 px-5 ">
+        <text class="active_txt pl-5">Active Books</text>
+        <div class="col-12 px-5">
+            <table class="table table_color table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Book ID</th>
+                        <th scope="col">Book Name</th>
+                        <th scope="col">Book Issue Date</th>
+                        <th scope="col">Due Date</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Paynow</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in activebooks %}
+                    <tr>
+                        <td scope="col">{{ row.bookid }}</td>
+                        <td scope="col">{{ row.bookname }}</td>
+                        <td scope="col">{{ row.timestamp }}</td>
+                        <td scope="col">{{ row.duedate }}</td>
+                        <td scope="col">{{ row.amountdue }}</td>
+                        <td scope="col"><a href="pay/{{ row.bookid }}/"><button>Paynow</button></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-<div>
-    <h3>Active Books</h3>
-    <table class="table table-secondary">
-        <thead>
-            <tr>
-                <th scope="col">S.no</th>
-                <th scope="col">Book ID</th>
-                <th scope="col">Book Issue Date</th>
-                <th scope="col">Due Date</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Paynow</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    {% if paystatus %}
+    <p>{{ paystatus }}</p>
+    {% endif %}
 
-<div>
-    <h3>Transactions</h3>
-    <table class="table table-secondary">
-        <thead>
-            <tr>
-                <th scope="col">Time Stamp</th>
-                <th scope="col">Book ID</th>
-                <th scope="col">Book Name</th>
-                <th scope="col">Copies Available</th>
-                <th scope="col">Type</th>
-                <th scope="col">Amount</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="row pt-1 px-5 pb-5">
+        <text class="active_txt pl-5">Transactions</text>
+        <div class="col-12 px-5">
+            <table class="table table-color">
+                <thead>
+                    <tr>
+                        <th scope="col">Time Stamp</th>
+                        <th scope="col">Book ID</th>
+                        <th scope="col">Book Name</th>
+                        <th scope="col">Copies Available</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in actionhistory %}
+                    <tr>
+                        <th scope="col">{{ row.timestamp }}</th>
+                        <td scope="col">{{ row.bookid }}</td>
+                        <td scope="col">{{ row.bookname }}</td>
+                        <td scope="col">{{ row.copies }}</td>
+                        <td scope="col">{{ row.ttype }}</td>
+                        <td scope="col">{{ row.amount }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

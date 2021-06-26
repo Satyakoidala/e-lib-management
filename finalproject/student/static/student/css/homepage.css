@@ -28,14 +28,6 @@ input {
     font-size: 24px;
 }
 
-.returnbtn {
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 28px;
-}
-
 .rollno-color {
     color: white;
     font-family: Roboto;
@@ -58,6 +50,13 @@ input {
 .text-align {
     align-items: center;
     text-align: right;
+}
+
+.table_color {
+    background: rgba(133, 210, 242, 0.53);
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 4px;
 }
 
 .table-color {

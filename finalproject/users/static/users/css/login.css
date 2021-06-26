@@ -1,0 +1,63 @@
+.button {
+    background: rgba(86, 205, 242, 0.65);
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    width: 98px;
+    height: 30px;
+}
+
+.card-pos {
+    margin: 0 auto;
+    float: none;
+}
+
+.colg_logo {
+    width: 30%;
+    height: 80%;
+
+}
+
+.forgot_psw {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 30px;
+
+    color: #CD4444;
+}
+
+.form_padding {
+    padding: 7%;
+}
+
+.input_bg {
+    background: #E5E5E5;
+    border-radius: 2px;
+}
+
+.login-txt {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+
+    color: #000000;
+}
+
+.text-align {
+    align-items: center;
+    text-align: right;
+}
+
+.txt-color {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    color: #1857FB;
+}

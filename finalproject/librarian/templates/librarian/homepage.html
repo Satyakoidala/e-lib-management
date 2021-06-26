@@ -2,134 +2,186 @@
 {% load static %}
 
 {% block head-part %}
-<link rel="stylesheet" href="{% static '' %}">
+<link rel="stylesheet" href="{% static 'librarian/css/homepage.css' %}">
+{% endblock %}
+
+{% block bg-part %}
+style="background:transparent url('{% static 'users/images/hologram.png' %}') no-repeat fixed center center / 40% 70%"
 {% endblock %}
 
 {% block header-other-half %}
 <div class="container">
-    <div class="row">
-        <div class="col">
+    <div class="row m-4 p-2 ">
+        <div class="col text-align ml-5">
             <a href='{% url "users:view-profile-view" %}'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                    class="bi bi-person-circle" viewBox="0 0 16 16">
-                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-                    <path fill-rule="evenodd"
-                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
-                </svg>
+                <text class="rollno-color ">{{ username }}</text>
             </a>
         </div>
-        <div class="col">
-            <a href="#">logout</a>
+
+        <div class="col lout-text-align ">
+            <a href="{% url 'users:logout-view' %}">
+                <text class="logoutcolor">Logout</text>
+            </a>
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block body-part %}
-
-<div class="container bg-light">
-    <div class="row">
-        <div class="col">
-            <form class="form-inline" action="" method="GET">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search Profile" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                    <img src="https://img.icons8.com/material-outlined/20/000000/search.png" />
-                </button>
+<div class="container-fluid ">
+    <div class="row m-3 pt-2">
+        <div class="col-6 pl-5">
+            <form action="{% url 'librarian:student-profile-view' %}" method="GET">
+                {{ studentprofileform.searchprofile }}
+                <!-- <input type="search" class="form-bg" id="profile" placeholder="     Search Profile"> -->
+                <input type="submit" class="search-button" value="">
             </form>
         </div>
-        <div class="col">
-            <form class="form-inline" action="" method="GET">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search Book" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                    <img src="https://img.icons8.com/material-outlined/20/000000/search.png" />
-                </button>
+        <div class="col-6 pr-5 ">
+            <form action="{% url 'users:search-result-view' %}" method="GET">
+                {{ searchform.searchbox }}
+                <!-- <input type="search" class="form-bg" id="book" placeholder="        Search Book"> -->
+                <input type="submit" class="search-button" value="">
             </form>
         </div>
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
+<div class="container-fluid ml-5 pl-5">
+    <div class="row ">
+        <div class="col-8 ">
+            <div style="height:500px; overflow-y: scroll; overflow-x: hidden;" class="scrol">
+                <div class="row ">
+                    <div class="col-12">
                         {% block student-profile %}
                         {% endblock %}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card card-outline-secondary">
-                            <div class="card-header ">
-                                <h3>Book Issue</h3>
-                            </div>
-                            <div class="card-body">
-                                <form class="form ">
+                    <div class="col-5 mr-5  pr-5 ">
+                        <text class="card_txt ">Book Issue</text>
+                        <div class="card shadow" style="width:27rem;">
+                            <div class="card-body card_b_color border border-5 border-dark" style="text-align:center">
+                                <form class="form" action="{% url 'librarian:issue-book-view' %}" method="POST">
+                                    {% csrf_token %}
                                     <div class="form-group">
-                                        <input type="text" id="stdid" placeholder="Enter Roll No" required="">
+                                        {{ bookactionform.rollno }}
+                                        <!-- <input type="text" id="stdid" class="input_align" size=48
+                                            placeholder="Enter Roll No" required=""> -->
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" id="bookid" placeholder="Enter Book ID" required="">
+                                        {{ bookactionform.bookid }}
+                                        <!-- <input type="text" id="bookid" class="input_align" size=48
+                                            placeholder="Enter Book ID" required=""> -->
                                     </div>
-
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-lg float-right">Issue</button>
-                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-sm ">
+                                        <h5>Issue</h5>
+                                    </button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="card card-outline-secondary">
-                            <div class="card-header ">
-                                <h3>Book Retrieval</h3>
-                            </div>
-                            <div class="card-body">
-                                <form class="form ">
+                    <div class="ml-5"></div>
+                    <div class="col-5 mr-5  pr-5">
+
+                        <text class="card_txt_2 pl-3">Book Retrieval</text>
+                        <div class="card shadow " style="width:27rem;">
+                            <div class="card-body card_b_color border border-5  border-dark" style="text-align:center">
+                                <form class="form " action="{% url 'librarian:submit-book-view' %}" method="POST">
+                                    {% csrf_token %}
                                     <div class="form-group">
-                                        <input type="text" id="stdid" placeholder="Enter Roll No" required="">
+                                        {{ bookactionform.rollno }}
+                                        <!-- <input type="text" id="stdid" class="input_align" size=48
+                                            placeholder="Enter Roll No" required=""> -->
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" id="bookid" placeholder="Enter Book ID" required="">
+                                        {{ bookactionform.bookid }}
+                                        <!-- <input type="text" id="bookid" class="input_align" size=48
+                                            placeholder="Enter Book ID" required=""> -->
                                     </div>
-
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-lg float-right">Submit</button>
-                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-md">
+                                        <h5>Submit</h5>
+                                    </button>
                                 </form>
                             </div>
                         </div>
-
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        {% if issue_error %}
+                        <p>{{ issue_error }}</p>
+                        {% endif %}
+                        {% if submit_error %}
+                        <p>{{ submit_error }}</p>
+                        {% endif %}
+                        {% if mail_notification %}
+                        <p>{{ mail_notification }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row px-3 mt-4">
+                    <text class="trans_txt">Transactions</text>
+                    <table class="table table_control">
+                        <thead>
+                            <tr>
+                                <th scope="col">Time Stamp</th>
+                                <th scope="col">Librarian ID</th>
+                                <th scope="col">Student Roll no</th>
+                                <th scope="col">Book ID</th>
+                                <th scope="col">Book Name</th>
+                                <th scope="col">Copies Available</th>
+                                <th scope="col">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for instance in transactions %}
+                            <tr>
+                                <td scope="col">{{ instance.timestamp }}</td>
+                                <td scope="col">{{ instance.libid }}</td>
+                                <td scope="col">{{ instance.studid }}</td>
+                                <td scope="col">{{ instance.bookid }}</td>
+                                <td scope="col">{{ instance.bookname }}</td>
+                                <td scope="col">{{ instance.copies }}</td>
+                                <td scope="col">{{ instance.ttype }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 pl-4 ">
+            <div class="container">
+                <text class="dash_txt">Dashboard</text>
+                <div class="card-deck text-center ">
+                    <div class="card dashboardcard">
+                        <div class="card-body">
+                            <div>
+                                <text class="num_txt">{{ dashboard.totalbooks }}</text>
+                                <br><text class="num_txt2">Total Books</text>
+                            </div>
+                            <div class="pt-3 mt-3">
+                                <text class=" num_txt">{{ dashboard.booksinside }}</text>
+                                <br><text class="num_txt2">Books Inside</text>
+                            </div>
+                            <div class="pt-3 mt-3">
+                                <text class="num_txt"> {{ dashboard.issuedbooks }}</text>
+                                <br><text class="num_txt2">Books Issued</text>
+                            </div>
+                            <div class="pt-3 mt-3">
+                                <text class="num_txt">{{ dashboard.submittedbooks }}</text>
+                                <br><text class="num_txt2">Books Submitted</text>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="container">
-                <h4>dashboard</h4>
-            </div>
-        </div>
     </div>
-</div>
 
-<div>
-    <h3>Transactions</h3>
-    <table class="table table-secondary">
-        <thead>
-            <tr>
-                <th scope="col">Time Stamp</th>
-                <th scope="col">Student Roll no</th>
-                <th scope="col">Book ID</th>
-                <th scope="col">Book Name</th>
-                <th scope="col">Copies Available</th>
-                <th scope="col">Type</th>
-            </tr>
-        </thead>
-    </table>
 </div>
 
 {% endblock %}

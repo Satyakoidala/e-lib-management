@@ -1,0 +1,26 @@
+.container-color {
+    background-color: #003366;
+}
+
+.col-align {
+    padding-left: 15%;
+}
+
+.h3color {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    color: #FFFFFF;
+}
+
+.p-color {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    color: white;
+}
+
+.scrol::-webkit-scrollbar {
+    width: 0 !important;
+}

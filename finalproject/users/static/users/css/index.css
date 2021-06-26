@@ -1,0 +1,27 @@
+.lib_txt {
+    font-size: 27px;
+    font-family: Roboto;
+    font-weight: 600;
+    color: black;
+    font-style: bold;
+    margin-left: 42%;
+}
+
+.logincolor {
+    color: white;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.table_control {
+    background: white;
+    border: 2px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+}
+
+.text-align {
+    align-items: center;
+    text-align: right;
+}

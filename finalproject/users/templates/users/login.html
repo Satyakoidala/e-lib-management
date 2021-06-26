@@ -2,31 +2,72 @@
 {% load static %}
 
 {% block head-part %}
-<link rel="stylesheet" href="{% static 'users/css/demo.css' %}">
+<link rel="stylesheet" href="{% static 'users/css/login.css' %}">
+{% endblock %}
+
+{% block bg-part %}
+style="background:transparent url('{% static 'users/images/bgimage.png' %}') no-repeat fixed center center / 100% 100%"
 {% endblock %}
 
 {% block body-part %}
-<h2>Login Form</h2>
-<form action="" method="POST">
 
-  <div class="container">
-    <label><b>UserID</b></label>
-    <input type="text" id="userid" placeholder="UserID" required>
+<div class="container">
+  <div class="row pt-5 mt-5">
+    <div class="col">
+      <div class="card card-pos" style="width: 20rem">
+        <div class="container m-3">
+          <div class="row ml-5 pl-4 pt-1">
+            <div class="col">
+              <img src="{% static 'users/images/logo.jpg' %}" alt="logo_img" width=85 height=75>
+            </div>
+          </div>
+          <div class="row m-2 pt-1">
+            <div class="col">
+              <text class="txt-color">Login to your account</text>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="card-body">
+                <form action="{% url 'users:user-validation-view' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="container">
+                    <div class="row mb-3 mt-2">
+                      {{ form.userid }}
+                    </div>
+                    <div class="row pb-5">
+                      {{ form.psw }}
+                    </div>
+                    <div class="row pl-4 ml-4">
+                      <button class="btn button pb-4" type="submit">
+                        <text class="login-txt text-center">Login</text></button>
+                    </div>
+                    <div class="row pt-3 pl-4">
+                      <div class="col">
+                        <a href="{% url 'users:forgot-password-view' %}" class="forgot-password">
+                          <text class="forgot_psw"> &ensp;Forgot password?</text>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="container">
-    <label><b>Password</b></label>
-    <input type="password" id="psw" placeholder="Password" required>
+  <div class="row">
+    <div class="col">
+      {% if logout_msg %}
+      {{ logout_msg }}
+      {% endif %}
+      {% if errors %}
+      {{errors}}
+      {% endif %}
+    </div>
   </div>
-
-  <div>
-    <button type="submit">Login</button>
-  </div>
-
-  <div class="container">
-    <span> <a href="#"> Forgot password?</a></span>
-  </div>
-
-</form>
+</div>
 
 {% endblock %}
