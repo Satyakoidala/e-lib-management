@@ -1,4 +1,3 @@
-from users.views import forgotpasswordview
 from django.urls import path
 
 from .views import *

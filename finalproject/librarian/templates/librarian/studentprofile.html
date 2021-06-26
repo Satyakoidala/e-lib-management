@@ -2,71 +2,77 @@
 {% load static %}
 
 {% block student-profile %}
-    {% if searchedquery %}
-    <div class="container border border-dark">
-        <div class="row border">
-            <div class="col">
-                <img src="{% static studimage %}" alt="profile-image" style="width:50%; height:100%;"/>
-            </div>
-            <div class="col">
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                Name:
-                            </td>
-                            <td>
-                                {{ student.name }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Roll Number:
-                            </td>
-                            <td>
-                                {{ student.studid }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+
+<text class="trans_txt">Student Profile</text>
+{% if searchedquery %}
+<div class="container container_color p-1 mb-3">
+    <div class="row ">
+        <div class="col-4 ml-5">
+            <img src="{% static studimage %}" width=120 height=110 alt="profile-image" />
         </div>
-        <div class="row">
-            <div class="col">
-                <table class="table table-secondary">
-                    <thead>
-                        <tr>
-                            <!-- <td>S.No</td> -->
-                            <td>Book ID</td>
-                            <td>Issue Date</td>
-                            <td>Due Date</td>
-                            <td>Amount Due</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% if activebooks %}
-                            {% for row in activebooks %}
-                            <tr>
-                                <!-- <td>{{ row.id }}</td> -->
-                                <td>{{ row.bookid }}</td>
-                                <td>{{ row.timestamp }}</td>
-                                <td>{{ row.duedate }}</td>
-                                <td>{{ row.amountdue }}</td>
-                            </tr>
-                            {% endfor %}
-                        {% else %}
-                            <tr>
-                                <td>----</td>
-                                <td>----</td>
-                                <td>----</td>
-                                <td>----</td>
-                                <td>----</td>
-                            </tr>
-                        {% endif %}
-                    </tbody>
-                </table>
-            </div>
+        <div class="col m-3">
+            <table>
+                <tbody>
+                    <tr>
+                        <td class="std_details">
+                            Name &emsp;&emsp;&emsp;:
+                        </td>
+                        <td class="std_details">
+                            {{ student.name }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="std_details">
+                            Roll Number :&emsp;&emsp;
+                        </td>
+                        <td class="std_details">
+                            {{ student.studid }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    {% endif %}
+    <div class="row p-1">
+        <div class="col">
+            <table class="table border border-dark pl-1">
+                <thead>
+                    <tr>
+                        <td>
+                            <h6>
+                                Book ID
+                            </h6>
+                        </td>
+                        <td>
+                            <h6>
+                                Issue Date
+                            </h6>
+                        </td>
+                        <td>
+                            <h6>
+                                Due Date
+                            </h6>
+                        </td>
+                        <td>
+                            <h6>
+                                Amount Due
+                            </h6>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in activebooks %}
+                    <tr>
+                        <td>{{ row.bookid }}</td>
+                        <td>{{ row.timestamp }}</td>
+                        <td>{{ row.duedate }}</td>
+                        <td>{{ row.amountdue }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
