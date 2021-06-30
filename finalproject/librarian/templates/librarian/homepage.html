@@ -33,14 +33,12 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
         <div class="col-6 pl-5">
             <form action="{% url 'librarian:student-profile-view' %}" method="GET">
                 {{ studentprofileform.searchprofile }}
-                <!-- <input type="search" class="form-bg" id="profile" placeholder="     Search Profile"> -->
                 <input type="submit" class="search-button" value="">
             </form>
         </div>
         <div class="col-6 pr-5 ">
             <form action="{% url 'users:search-result-view' %}" method="GET">
                 {{ searchform.searchbox }}
-                <!-- <input type="search" class="form-bg" id="book" placeholder="        Search Book"> -->
                 <input type="submit" class="search-button" value="">
             </form>
         </div>
@@ -66,16 +64,12 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
                                     {% csrf_token %}
                                     <div class="form-group">
                                         {{ bookactionform.rollno }}
-                                        <!-- <input type="text" id="stdid" class="input_align" size=48
-                                            placeholder="Enter Roll No" required=""> -->
                                     </div>
 
                                     <div class="form-group">
                                         {{ bookactionform.bookid }}
-                                        <!-- <input type="text" id="bookid" class="input_align" size=48
-                                            placeholder="Enter Book ID" required=""> -->
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-sm ">
+                                    <button type="submit" class="btn btn-primary btn-sm mb-1">
                                         <h5>Issue</h5>
                                     </button>
                                 </form>
@@ -92,14 +86,10 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
                                     {% csrf_token %}
                                     <div class="form-group">
                                         {{ bookactionform.rollno }}
-                                        <!-- <input type="text" id="stdid" class="input_align" size=48
-                                            placeholder="Enter Roll No" required=""> -->
                                     </div>
 
                                     <div class="form-group">
                                         {{ bookactionform.bookid }}
-                                        <!-- <input type="text" id="bookid" class="input_align" size=48
-                                            placeholder="Enter Book ID" required=""> -->
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-md">
                                         <h5>Submit</h5>
@@ -109,16 +99,31 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-4">
                     <div class="col">
                         {% if issue_error %}
-                        <p>{{ issue_error }}</p>
+                        <div class="alert alert-danger alert-dismissible fade show card-pos" style="width:fit-content; margin: 0 auto;" role="alert">
+                            <strong>{{ issue_error }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         {% endif %}
                         {% if submit_error %}
-                        <p>{{ submit_error }}</p>
+                        <div class="alert alert-danger alert-dismissible fade show card-pos" style="width:fit-content; margin: 0 auto;" role="alert">
+                            <strong>{{ submit_error }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         {% endif %}
                         {% if mail_notification %}
-                        <p>{{ mail_notification }}</p>
+                        <div class="alert alert-success alert-dismissible fade show card-pos" style="width:fit-content; margin: 0 auto;" role="alert">
+                            <strong>{{ mail_notification }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                         {% endif %}
                     </div>
                 </div>

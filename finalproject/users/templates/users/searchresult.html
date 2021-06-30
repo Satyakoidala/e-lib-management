@@ -67,7 +67,12 @@
           </tbody>
         </table>
         {% else %}
-        <span> Sorry, No books found for your query search.</span>
+        <div class="alert alert-warning alert-dismissible fade show" style="width:fit-content; margin: 0 auto;" role="alert">
+          <strong>Sorry, No books found for your query search.</strong>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         {% endif %}
       </div>
     </div>

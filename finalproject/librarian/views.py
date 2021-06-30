@@ -143,14 +143,14 @@ def issuebookview(request, *args, **kwargs):
             studid = bookform.cleaned_data['rollno']
             bookid = bookform.cleaned_data['bookid']
             try:
-                book = Books.objects.get(bookid=bookid)
-            except:
-                request.session['issue_book_error'] = 'Invalid Book ID'
-                return HttpResponseRedirect(reverse('librarian:home-page-view'))
-            try:
                 student = Library_Users.objects.get(userid=studid)
             except:
                 request.session['issue_book_error'] = 'Invalid Student ID'
+                return HttpResponseRedirect(reverse('librarian:home-page-view'))
+            try:
+                book = Books.objects.get(bookid=bookid)
+            except:
+                request.session['issue_book_error'] = 'Invalid Book ID'
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
             # post validity of roll no of student
 
@@ -205,14 +205,14 @@ def submitbookview(request, *args, **kwargs):
             studid = bookform.cleaned_data['rollno']
             bookid = bookform.cleaned_data['bookid']
             try:
-                book = Books.objects.get(bookid=bookid)
-            except:
-                request.session['submit_book_error'] = 'Invalid Book ID'
-                return HttpResponseRedirect(reverse('librarian:home-page-view'))
-            try:
                 student = Library_Users.objects.get(userid=studid)
             except:
                 request.session['submit_book_error'] = 'Invalid Student ID'
+                return HttpResponseRedirect(reverse('librarian:home-page-view'))
+            try:
+                book = Books.objects.get(bookid=bookid)
+            except:
+                request.session['submit_book_error'] = 'Invalid Book ID'
                 return HttpResponseRedirect(reverse('librarian:home-page-view'))
             # post validity of roll no of student
 
