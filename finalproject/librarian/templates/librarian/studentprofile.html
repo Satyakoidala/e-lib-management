@@ -8,7 +8,7 @@
 <div class="container container_color p-1 mb-3">
     <div class="row ">
         <div class="col-4 ml-5">
-            <img src="{% static studimage %}" width=120 height=110 alt="profile-image" />
+            <img src="{% static studimage %}" alt="profile-image" onerror="callfun(this);" width=120 height=110 alt="profile-image" />
         </div>
         <div class="col m-3">
             <table>
@@ -75,4 +75,11 @@
     </div>
 </div>
 {% endif %}
+<script>
+    function callfun(obj)
+    {
+        var noimg = "{% static 'users/images/alt.png' %}";
+        obj.src=noimg;
+    }
+</script>
 {% endblock %}
