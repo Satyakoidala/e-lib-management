@@ -38,7 +38,7 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
     <div class="row box-color m-4 p-4">
         <div class="col-4 pt-4 mt-2 pl-5">
             <div class="profile-img">
-                <img src="{% static profileImage %}" alt="profile-image" width=200 height=200 />
+                <img src="{% static profileImage %}" alt="profile-img" onerror="callfun(this);" width=200 height=200 />
             </div>
         </div>
         <div class="col-8">
@@ -46,31 +46,31 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
                 <tbody>
                     <tr>
                         <td class="txt-format">Name</td>
-                        <td class="txt-format ml-3">{{ student.name }}</td>
+                        <td class="txt-format pl-3">{{ student.name }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Roll Number</td>
-                        <td class="txt-format ml-3">{{ student.studid }}</td>
+                        <td class="txt-format pl-3">{{ student.studid }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Email ID</td>
-                        <td class="txt-format ml-3">{{ student.email }}</td>
+                        <td class="txt-format pl-3">{{ student.email }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Phone Number</td>
-                        <td class="txt-format ml-3">{{ student.phone }}</td>
+                        <td class="txt-format pl-3">{{ student.phone }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Academic Year</td>
-                        <td class="txt-format ml-3">{{ student.academicyear }}</td>
+                        <td class="txt-format pl-3">{{ student.academicyear }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Section</td>
-                        <td class="txt-format ml-3">{{ student.section }}</td>
+                        <td class="txt-format pl-3">{{ student.section }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Amount Paid till now</td>
-                        <td class="txt-format ml-3">{{ student.amountpaid }}</td>
+                        <td class="txt-format pl-3">{{ student.amountpaid }}</td>
                     </tr>
 
                 </tbody>
@@ -96,7 +96,7 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
     <div class="row box-color m-4 p-4">
         <div class="col-4 pt-3 mt-1 pb-3 px-5">
             <div class="profile-img pl-5">
-                <img src="{% static profileImage %}" alt="profile-img" width=180 height=200>
+                <img src="{% static profileImage %}" alt="profile-img" onerror="callfun(this);" width=180 height=200>
             </div>
         </div>
         <div class="col-8 pl-5  pt-4">
@@ -104,27 +104,27 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
                 <tbody>
                     <tr>
                         <td class="txt-format">Name</td>
-                        <td class="txt-format ml-3">{{ librarian.name }}</td>
+                        <td class="txt-format pl-3">{{ librarian.name }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">User ID</td>
-                        <td class="txt-format ml-3">{{ librarian.libid }}</td>
+                        <td class="txt-format pl-3">{{ librarian.libid }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Email ID</td>
-                        <td class="txt-format ml-3">{{ librarian.email }}</td>
+                        <td class="txt-format pl-3">{{ librarian.email }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Number Of Books Issued</td>
-                        <td class="txt-format ml-3">{{ librarian.issuedcount }}</td>
+                        <td class="txt-format pl-3">{{ librarian.issuedcount }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Number Of Books Retrieved</td>
-                        <td class="txt-format ml-3">{{ librarian.retrievedcount }}</td>
+                        <td class="txt-format pl-3">{{ librarian.retrievedcount }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Total number of Actions</td>
-                        <td class="txt-format ml-3">{{ librarian.totalactions }}</td>
+                        <td class="txt-format pl-3">{{ librarian.totalactions }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -145,4 +145,12 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
 
 
 {% endif %}
+
+<script>
+    function callfun(obj)
+    {
+        var noimg = "{% static 'users/images/alt.png' %}";
+        obj.src=noimg;
+    }
+</script>
 {% endblock %}
