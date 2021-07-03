@@ -35,7 +35,6 @@ def homepageview(request, *args, **kwargs):
         'paystatus': pay_status,
     })
 
-
 def paymentview(request, bookid, *args, **kwargs):
     username = request.session['curr_user_id']
     active_user = Library_Users.objects.get(userid=username)
@@ -48,7 +47,6 @@ def paymentview(request, bookid, *args, **kwargs):
         'user': active_user,
         'paymentbook': paymentbook,
     })
-
 
 def paymentsuccessview(request, bookid, *args, **kwargs):
     username = request.session['curr_user_id']

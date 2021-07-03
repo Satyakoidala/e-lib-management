@@ -50,28 +50,6 @@ def validationview(request, *args, **kwargs):
         form = loginform(request.POST)
         if form.is_valid():
             try:
-                user = Library_Users.objects.get(userid=form.cleaned_data['userid'])
-            except:
-                request.session['curr_user_id'] = 'anonymous'
-                request.session['auth_errors'] = 'Invalid Username/Password'
-                return HttpResponseRedirect(reverse('users:login-view'))
-            if (user.password == form.cleaned_data['psw']):
-                request.session['curr_user_id'] = form.cleaned_data['userid']
-                # print(request.session['curr_user_id'])
-                if (user.isLibrarian):
-                    return HttpResponseRedirect(reverse('librarian:home-page-view'))
-                else:
-                    return HttpResponseRedirect(reverse('student:home-page-view'))
-            else:
-                request.session['curr_user_id'] = 'anonymous'
-                request.session['auth_errors'] = 'Invalid Username/Password'
-    return HttpResponseRedirect(reverse('users:login-view'))
-
-def validationview(request, *args, **kwargs):
-    if request.method == 'POST':
-        form = loginform(request.POST)
-        if form.is_valid():
-            try:
                 user = Library_Users.objects.get(
                     userid=form.cleaned_data['userid'])
             except:
