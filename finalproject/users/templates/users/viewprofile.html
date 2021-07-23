@@ -1,15 +1,5 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block head-part %}
-<link rel="stylesheet" href="{% static 'users/css/viewprofile.css' %}">
-{% endblock %}
-
-{% block bg-part %}
-style="background:transparent url('{% static 'users/images/hologram.png' %}') no-repeat fixed center center / 40% 70%"
-{% endblock %}
-
-{% block header-other-half %}
+{% extends 'base.html' %} {% load static %} {% block head-part %}
+<link rel="stylesheet" href="{% static 'users/css/viewprofile.css' %}"> {% endblock %} {% block bg-part %} style="background:transparent url('{% static 'users/images/hologram.png' %}') no-repeat fixed center center / 40% 70%" {% endblock %} {% block header-other-half %}
 <div class="container">
     <div class="row m-4 p-2 ">
         <div class="col text-align ml-5">
@@ -25,9 +15,14 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} {% block body-part %}
 
-{% block body-part %}
+<script>
+    function callfun(obj) {
+        var noimg = "{% static 'users/images/alt.png' %}";
+        obj.src = noimg;
+    }
+</script>
 
 {% if not isLibrarian %}
 
@@ -46,7 +41,7 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
                 <tbody>
                     <tr>
                         <td class="txt-format">Name</td>
-                        <td class="txt-format pl-3">{{ student.name }}</td>
+                        <td class="txt-format pl-3">{{ student.title }}. {{ student.name }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Roll Number</td>
@@ -58,11 +53,11 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
                     </tr>
                     <tr>
                         <td class="txt-format">Phone Number</td>
-                        <td class="txt-format pl-3">{{ student.phone }}</td>
+                        <td class="txt-format pl-3">(+91) {{ student.phone }}</td>
                     </tr>
                     <tr>
-                        <td class="txt-format">Academic Year</td>
-                        <td class="txt-format pl-3">{{ student.academicyear }}</td>
+                        <td class="txt-format">Batch Number</td>
+                        <td class="txt-format pl-3">{{ student.academicyear|truncatechars:5 }}Graduation</td>
                     </tr>
                     <tr>
                         <td class="txt-format">Section</td>
@@ -70,7 +65,7 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
                     </tr>
                     <tr>
                         <td class="txt-format">Amount Paid till now</td>
-                        <td class="txt-format pl-3">{{ student.amountpaid }}</td>
+                        <td class="txt-format pl-3">Rs. {{ student.amountpaid }}</td>
                     </tr>
 
                 </tbody>
@@ -104,7 +99,7 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
                 <tbody>
                     <tr>
                         <td class="txt-format">Name</td>
-                        <td class="txt-format pl-3">{{ librarian.name }}</td>
+                        <td class="txt-format pl-3">{{ librarian.title }}. {{ librarian.name }}</td>
                     </tr>
                     <tr>
                         <td class="txt-format">User ID</td>
@@ -144,13 +139,4 @@ style="background:transparent url('{% static 'users/images/hologram.png' %}') no
 </div>
 
 
-{% endif %}
-
-<script>
-    function callfun(obj)
-    {
-        var noimg = "{% static 'users/images/alt.png' %}";
-        obj.src=noimg;
-    }
-</script>
-{% endblock %}
+{% endif %} {% endblock %}

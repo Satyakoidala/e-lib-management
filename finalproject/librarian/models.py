@@ -7,6 +7,7 @@ from users.models import *
 class Librarian(models.Model):
     libid = models.ForeignKey(
         Library_Users, related_name='librarians', on_delete=models.CASCADE)
+    title = models.CharField(max_length=4, blank=False, null=False, default="Mr")
     name = models.CharField(max_length=50, blank=False, null=False)
     phone = models.CharField(max_length=10, blank=False, null=False)
     email = models.EmailField(blank=False, null=False)

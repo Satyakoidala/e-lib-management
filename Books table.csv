@@ -1,0 +1,165 @@
+bookid,bookname,author,edition,copies,shelf,dept
+5001,Fundamentals of Computers,Reema Thareja,1,2,11,cse
+5002,Introduction to Computers,Peter Norton,7,3,11,cse
+5003,Using Information Technology,William Sawyer,5,4,11,cse
+5004,Fundamentals of Computers,E.Balagurusamy,1,5,11,cse
+5005,Fundamentals of computers,V. Raja Raman,6,6,11,cse
+5006,Discrete Mathematical Structures with Applications to Computer Science,J.P Tremblay,,7,11,cse
+5007,"Discrete Maths for Computer Scientists & Mathematicians, Second Edition",J.L. Mott,2,8,11,cse
+5008,Discrete Mathematics for Computer Science,Kenneth Bogart,1,9,11,cse
+5009,Introduction to Design and Analysis of Algorithms A strategic approach,R.C.T.Lee,2,2,11,cse
+5010,Data structures and Algorithm Analysis in C++,Allen Weiss,2,3,11,cse
+7001,Physical Chemistry,Puri,42,4,14,"che,civil,cse,ece,eee,mech,it"
+7002,Essentials of Physical Chemistry,Arun Bahl,16,5,14,"che,civil,cse,ece,eee,mech,it"
+7003,Basic Electrical Engineering,Dr. K. Uma Rao,1,6,14,"che,civil,cse,ece,eee,mech,it"
+7004,Introduction to Electrodynamics,J. Griffiths,3,7,14,"che,civil,cse,ece,eee,mech,it"
+7005,A Text book of Engineering Physics,M.N. Avadhanulu,10,8,14,"che,civil,cse,ece,eee,mech,it"
+7006,Materials Science,V. Raghavan,5,9,14,"che,civil,cse,ece,eee,mech,it"
+7007,Singer`s Engineering Mechanics : Statics and Dynamics,Vijaya Kumar Reddy K,3,2,14,"che,civil,cse,ece,eee,mech,it"
+7008,Engineering Mechanics,Timoshenko SP,4,3,14,"che,civil,cse,ece,eee,mech,it"
+7009,Engineering Mechanics: Statics and Dynamics,Tayal AK,13,4,14,"che,civil,cse,ece,eee,mech,it"
+7010,Electronic Devices and Circuits,Millman Jacob,2,5,14,"cse,ece,it"
+7011,Digital Design,Morris Mano,3,6,14,"cse,ece,eee,it"
+7012,Switching Theory and Logic Design,Anand Kumar,,7,15,"cse,ece,eee,it"
+7013,Switching & Finite Automata theory,Zvi Kohavi,2,8,15,"cse,ece,eee,it"
+7014,Modern Digital Electronics,R.P. Jain,4,2,15,"cse,ece,eee,it"
+7015,Fundamentals of Logic Design,Charles H. Roth,5,3,15,"cse,ece,eee,it"
+7016,Computer Organization and Architecture,William Stallings,8,4,15,"cse,ece,eee,it"
+7017,Computer Systems Architecture,M.Moris Mano,3,5,15,"cse,ece,eee,it"
+7018,Computer Systems Organization and Architecture,John D. Carpinelli,3,6,15,"cse,ece,eee,it"
+7019,Computer Organization,Carl Hamacher,5,7,15,"cse,ece,eee,it"
+7020,Datastructures using C and C++,"Langsam,M.",2,8,15,"cse,it"
+7021,Fundamentals of at a Structures in C,Sartaj Sahni,2,9,15,"cse,it"
+7022,Fundamentals of Computer Algorithms,Ellis Horowitz,2,2,15,"cse,it"
+7023,"Algorithm Design Foundations, Analysis and Internet examples",M.T.Goodrich,1,3,15,"cse,it"
+7024,Introduction to Algorithms,T.H.Cormen,3,4,15,"cse,it"
+3001,Introduction to Chemical Engineering Thermodynamics,Smith J.M,7,5,7,che
+3002,Chemical and Process Thermodynamics,Kyle B.G,3,6,7,che
+3003,Thermodynamics with chemical applications,Abbott M.M,2,7,7,che
+3004,Unit Operations of Chemical Engineering,McCabe W.L,7,8,7,che
+3005,Fluid Mechanics for Chemical Engineers,De Nevers,3,9,7,che
+3006,"Chemical Process Principles, Part -I, Material and Energy Balance",Hougen. O. A,2,2,7,che
+3007,Basic Principles and Calculations in Chemical Engineering,Himmelblau D.H,5,3,7,che
+3008,Unit Operations in Chemical Engineering,McCabe W.L,7,4,7,che
+3009,Process Heat Transfer,Kern D Q,,5,7,che
+3010,Transport processes and Unit operations,"Geankoplis,C.J",3,6,7,che
+3011,Materials Science and Engineering: A first course,Raghavan V,5,7,7,che
+3012,Corrosion Engineering,Fontana M.G,3,8,8,che
+3013,Nanotechnology: Principles and Practices,Sulabha.K.Kulkarni.,2,9,8,che
+3014,Nanotechnology: Basic Science and Emerging Technologies,Wilson,,2,8,che
+3015,Nanotechnology : A gentle Introduction to the next big idea,Ratner,,3,8,che
+3016,Fundamentals of Polymer Engineering,Anil Kumar,2,4,8,che
+3017,Principles of Polymer Processing,Zehev Tadmor,2,5,8,che
+3018,Industrial Instrumentation,Eckman D.P,,6,8,che
+3019,Numerical Methods for Engineers,Gupta,,7,8,che
+3020,Numerical Methods and Modeling for Chemical Engineers,Mark.E.Davis,1,8,8,che
+3021,Chemical Reaction Engineering,Levenspiel,3,9,8,che
+3022,Mass transfer operations,Treybal R.E,3,2,8,che
+3023,Transport processes and unit operations,Geankoplis C.J,4,3,8,che
+1001,Introduction to text book of Strength of Materials,R.K.Bansal,4,4,1,civil
+1002,Strength of Materials,Sadhu Singh,2,5,1,civil
+1003,Strength of Materials,S. Ramamrutham,11,6,1,civil
+1004,Mechanics of Solids,Ferdinand Beer,6,7,1,civil
+1005,Strength of Materials,Schaum,10,8,1,civil
+1006,Strength of Materials,R. Subramanian,1,9,1,civil
+1007,Strength of Materials,Bhavi Katti,7,2,1,civil
+1008,Strength of Materials,Timoshenko,4,3,2,civil
+1009,Hydraulics and Fluid Mechanics Including Hydraulic Machines,P.N Modi,14,4,2,civil
+1010,Fluid Mechanics,V.L.Streeter,9,5,2,civil
+1011,Fluid Mechanics,K.L. Kumar,6,6,2,civil
+1012,Engineering Geology,N.Chennkesavulu,2,7,2,civil
+1013,Engineering and General Geology,Parbin Singh,,8,2,civil
+1014,Engineering Geology,P.C. Vargheese,,9,2,civil
+1015,Fundamentals of Engineering Geology,F.G. Bell,,2,2,civil
+1016,Principles of Engineering Geology &Geotechnics,Krynine,,3,3,civil
+1017,Principles of Engineering Geology &Geotechnics,K.V.G.K. Gokhale,,4,3,civil
+1018,Building Planning andDrawing,N. Kumara Swamy,8,5,3,civil
+1019,"Building Planning, Scheduling and Design",Gurucharan Singh,2,6,3,civil
+1020,Hydraulics and Fluid MechanicsIncluding Hydraulic Machines,P.N Modi,14,7,3,civil
+1021,Flow in Open Channels,K. Subramanya,,8,3,civil
+1022,Analysis of Structures,V.N. Vazirani,,9,3,civil
+1023,Analysis of Structures,T.S. Thandavamoorthy,,2,4,civil
+1024,Comprehensive Structural Analysis,Dr. R. Vaidyanathan,,3,4,civil
+1025,Basic structural Analysis,C.S. Reddy,,4,4,civil
+1026,Mechanics of Structures,S.B.Junnarkar,10,5,4,civil
+1027,Theory of Structures,Pandit,3,6,4,civil
+1028,Theory of Structures,R.S. Khurmi,2,7,4,civil
+1029,Strength of Materials and Mechanics of Structures,B.C.Punmia,2,8,4,civil
+1030,Introduction to Structural Analysis,B.D.Nautiyal,1,9,4,civil
+1031,Concrete Technology,A.M.Neville,5,2,4,civil
+4001,Fundamentals of Electric Circuits,Charles K,5,3,9,ece
+4002,Network Analysis,M.E.VanValkenberg,,4,9,ece
+4003,Engineering Circuit Analysis,William H.Hayt,7,5,9,ece
+4004,Network Analysis,N.C. Jagan,2,6,9,"ece,eee"
+4005,Network Analysis and Synthesis,Franklin F.Kuo,5,7,9,"ece,eee"
+4006,Electromagnetic Waves and Radiating Systems,E.C. Jordan,2,8,9,ece
+4007,Elements of Electromagnetics,Matthew N.O. Sadiku,3,9,9,ece
+4008,Engineering Electromagnetics,Nathan Ida,2,2,9,ece 
+4009,Networks Lines and Fields,John D. Ryder,2,3,9,ece 
+4010,Engineering Electromagnetics,William H. Hayt Jr,7,4,9,ece 
+4011,Electromagnetic Field Theory and Transmission Lines,G.S.N. Raju,5,5,9,ece 
+4012,Electromagnetic Field Theory and Transmission Lines,G. Sasi Bhushana Rao,4,6,10,ece 
+4013,Electromagnetic Field Theory Fundamentals,Bhag Singh Guru,1,7,10,ece 
+4014,Communication Systems,Simon Haykin,2,8,10,ece 
+4015,Communication Systems,B.P. Lathi,3,9,10,ece
+4016,Fundamentals of Communication Systems,John G. Proakis,2,2,10,ece
+4017,Principles of Communication Systems,H Taub,3,3,10,ece
+4018,Electronics & Communication System,George Kennedy,5,4,10,ece
+4019,Communication Systems,R.P. Singh,2,5,10,ece
+2001,Electric Machines,I. J. Nagrath,4,6,5,eee
+2002,The Performance and Design of Direct Current Machines,AE Clayton,3,7,5,eee
+2003,Performance and Design of A.C. Machines,M.G. Say,3,8,5,eee
+2004,Electro Magnetic Fields,Sadiku,4,9,5,eee
+2005,Introduction to Electro Dynamics,D J Griffiths,2,2,5,eee
+2006,Electromagnetics,J.D. Kraus,4,3,5,eee
+2007,Elements of Engineering Electromagnetic,N.Narayana Rao,,4,5,eee
+2008,A Text Book on Power System Engineering,M.L. Soni,2,5,5,eee
+2009,Renewable Energy Sources and Emerging Technologies,D. P. Kothari,2,6,6,eee
+2010,Elements of Power Station Design and Practice,M.V. Deshpande,,7,6,eee
+2011,Power Plant Engineering,Arora Domukundwar,,8,6,eee
+2012,MODER CONTROL ENGINEERING,K. Ogata,4,9,6,eee
+2013,Feedback Control Systems,Charles L. Phillips,5,2,6,eee
+2014,Electromechanical Energy Conversion With Dynamics of Machines,D. Begamudre,,3,6,eee
+2015,Performance and design of alternating current machines,m. G. Say,,4,6,eee
+2016,Electrical machines,S.K. Bhattacharya,,5,6,eee
+6001,ERP Demystified,Alexis Leon,2,6,12,it
+6002,Supply Chain Management Strategy Planning and operation,Sunil Chopra,4,7,12,it
+6003,Enterprise Resource Planning-Concepts and Planning,Vinod Kumar,2,8,12,it
+6004,Designing and Managing the Supply Chain: Concepts Strategies and Case Studies,David Simchi-Levi,2,9,12,it
+6005,Natural Language Understanding,"Allen, James",2,2,12,it
+6006,Statistical Language Learning,"Charniack, Eugene",,3,12,it
+6007,Speech and Language Processing,Jurafsky,2,4,12,it
+6008,Foundations of Statistical Natural Language Processing,Manning,,5,12,it
+6009,Fundamentals of Multimedia,Ze-Nian Li,1,6,12,it
+6010,Digital Multimedia,Nigel Chapman,3,7,13,it
+6011,Multimedia and Communications Technology,Steve Heath,2,8,13,it
+6012,Multimedia Applications,Steinmetz,1,9,13,it
+6013,Multimedia Basics,Weixel,2,2,13,it
+6014,Digital Signal Processing – Principles Algorithms & Applications,John G. Proakis,4,3,13,it
+6015,Digital Signal Processing,Emmanuel C.Ifeachor,2,4,13,it
+6016,Digital Signal Processing – A Computer Based Approach,Sanjit K. Mitra,4,5,13,it
+6017,Discrete Time Signal Processing,Alan V.Oppenheim,2,6,13,it
+6018,Digital Signal Processing,Andreas Antoniou,2,7,13,it
+3001,Introduction to Electrical Engineering,M.S Naidu,4,8,16,"mech,eee"
+3002,Electrical Engineering Fundamentals,Vincent Del Toro,5,9,16,"mech,eee"
+3003,Principles of Electrical Engineering,V.K Mehta,5,2,16,"mech,eee"
+3004,Theory and Problems of Basic Electrical Engineering,I.J. Nagrath,4,3,16,"mech,eee"
+3005,Essentials of Electrical and Computer Engineering,David V. Kerns,3,4,16,"mech,eee"
+3006,Mechanics of Materials,James M.Gere,7,5,16,mech
+3007,Strength of Materials,S.Ramamrutham,16,6,16,mech 
+3008,Mechanics of Materials,FP Beer,6,7,16,mech 
+3009,Strength of Materials,Rajput,5,8,16,mech 
+3010,Strength of Materials,RK Bansal,4,9,16,mech
+3011,Manufacturing Technology,Rao P. N.,2,2,17,mech
+3012,Manufacturing Processes,"Shan, H.S.",1,3,17,mech
+3013,Manufacturing Technology,Kalpakjain S,,4,17,mech
+3014,Introduction to Physical Metallurgy,Sidney H Avner,2,5,17,mech 
+3015,Materials Science and Metallurgy,Kodgire,3,6,17,mech
+3016,Manufacturing Engineering and Technology,Kalpakjian S,,7,17,mech
+3017,Elements of materials science and Engineering,Van Vlack,,8,17,mech 
+3018,Elements of materials science,V.Raghavan,,9,17,mech 
+3019,Metallurgy and Materials Science,Callistar,,2,17,mech
+3020,Theory of Machines,Rattan SS,3,3,17,mech
+3021,Theory of Machines and Mechanisms,Uicker JJ,4,4,17,mech 
+3022,The Theory of Machines,Thomas Bevan,3,5,17,mech
+3023,Kinematics and Dynamics of Machinery,Norton RC,3,6,17,mech
